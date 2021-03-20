@@ -2,6 +2,7 @@ import random
 
 
 class Die():
+    ''' Setup the game equipment '''
     def __init__(self):
         self.die_number = 0
 
@@ -13,7 +14,7 @@ class Die():
 
 
 class Player():
-
+    ''' Player setup'''
     def __init__(self, name):
         self.name = name
         self.score = 0
@@ -22,24 +23,28 @@ class Player():
 
 
     def addtoFinal(self):
+        ''' add turn score to the overall score'''
         self.score = self.score + self.turn_score
 
     def addtoTurn(self, points):
+        ''' keep a running tally of turn score'''
         self.turn_score = self.turn_score + points
 
     def reset(self):
+        ''' reset the turn score'''
         self.turn_score = 0
 
     def reset_turn(self):
+        ''' reset who's turn it is'''
         self.turn = True
 
     def hold_or_roll(self, die):
-            while self.turn:
+            ''' main game setup. overall logic of the game '''
+            while self.turn:    #run until the player ends their turn
                 choose = input("Pick 'r' to roll the die or 'h' to hold.")
                 if choose == 'r':
                     die.roll()
                     if die.get_die_number() == 1:
-                        #self.reset()
                         print("----{} rolled a {}.".format(self.name, die.get_die_number()))
                         print("You lost your TURN-SCORE points. Your OVERALL SCORE is {}. It's now the next player's turn...".format(self.score))
                         self.turn = False
@@ -62,13 +67,12 @@ class Player():
 
 def main():
 
+    ''' instantiate objects'''
     die = Die()
     player1 = Player('Player 1')
     player2 = Player('Player 2')
 
     game = True
-
-
     while game:
         player1.hold_or_roll(die)
         player1.reset_turn()
