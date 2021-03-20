@@ -61,6 +61,9 @@ class Player():
                         exit()
                     self.reset()
                     self.turn = False
+                elif choose == 'I win!!':
+                    print("Secret Cheat Code Entered...You win...")
+                    exit()
 
 
 
